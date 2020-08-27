@@ -6,5 +6,7 @@ USAGE:
 
 Barcode file (tab separated without header):
 
-`Sample1 i1_i2`
-`Sample2 AACCACTC_AAGACTGG`
+```
+Sample1 i1_i2
+Sample2 AACCACTC_AAGACTGG
+```
