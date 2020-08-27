@@ -1,6 +1,7 @@
-### demultiplexNextera
+## demultiplexNextera
 
-####USAGE
+###USAGE
+
 demultiplexNextera.pl file.R1.fastq file.R2.fastq i1.fastq i2.fastq barcode.txt
 
 Barcode file:
