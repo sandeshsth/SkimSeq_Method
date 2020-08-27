@@ -14,4 +14,6 @@ Sample2 AACCACTC_AAGACTGG
 ```
 
 Citation:
+```
 Shrestha S. 2019. Demultiplex dual indexed paired-end FASTQ reads. GitHub Repository. https://github.com/sandeshsth/demultiplexNextera.
+```
