@@ -19,7 +19,7 @@ Sample2 AACCACTC_AAGACTGG
 ```
 
 ### B. Variant calling
-#### 1. Idetifying variants between the two parents
+#### 1. Discovering variants between the two parents
 
 The whole genome sequecning (WGS) of two parents (Landmark and Stanley) were aligned to the reference genome using Hisat2:
 ```
