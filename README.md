@@ -1,4 +1,4 @@
-#### 1. Demultiplexing skim-sequencing (skim-seq) data into individual samples
+### A. Demultiplexing skim-sequencing (skim-seq) data into individual samples
 
 ```
 demultiplexNextera.pl file.R1.fastq file.R2.fastq i1.fastq i2.fastq barcode.txt
@@ -18,7 +18,8 @@ Sample1 TTCCTCCT_AAGACTGG
 Sample2 AACCACTC_AAGACTGG
 ```
 
-#### 2. Variant calling between parents
+### B. Variant calling
+#### 1. Idetifying variants between the two parents
 
 The whole genome sequecning (WGS) of two parents (Landmark and Stanley) were aligned to the reference genome using Hisat2:
 ```
@@ -39,7 +40,7 @@ Variant calling:
 bcftools1.10.2/bin/bcftools mpileup --annotate AD,DP,INFO/AD --skip-indels -f 170831_Landmark_pseudomolecules_v1.fasta -b bamFilesList.txt -B | bcftools1.10.2/bin/bcftools call -m --variants-only  --skip-variants indels --output-type v -o LandmarkStanley.vcf --group-samples -
 ```
 
-#### 3. Genotyping of variants identified between parents in a doubled haploid population.
+#### 2. Genotyping of variants identified between parents in a doubled haploid population.
 
 The SNP positions are listed in a file which is used in BCFtools:
 ```
