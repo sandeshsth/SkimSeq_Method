@@ -1,4 +1,4 @@
-## demultiplexNextera
+#### Demultiplexing skim-sequencing (Nextera) data into individual samples
 
 USAGE:
 
@@ -16,11 +16,6 @@ Files:
 Barcode file (tab separated without header):
 
 ```
-Sample1 i1_i2
 Sample2 AACCACTC_AAGACTGG
 ```
 
-Citation:
-```
-Shrestha S. 2019. Demultiplexing dual-indexed paired-end FASTQ reads. GitHub Repository. https://github.com/sandeshsth/demultiplexNextera.
-```
