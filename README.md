@@ -1,4 +1,4 @@
-#### Demultiplexing skim-sequencing (Nextera) data into individual samples
+#### 1. Demultiplexing skim-sequencing (Nextera) data into individual samples
 
 USAGE:
 
