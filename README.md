@@ -49,7 +49,7 @@ grep -v '^#' LandmarkStanley.vcf | awk '{print $1"\t"$2"\t"$4","$5}' | bgzip -c 
 
 Remove adapters:
 ```
-fastp -i sample.R1.fq -I sample.R2.fq -o sample.fp.Ra1.fq.gz -O sample.fp.Ra2.fq.gz --thread=5 --html=sample.a.html --json=sample.a.json --detect_adapter_for_pe --qualified_quality_phred=10 --length_required=150
+fastp -i sample.R1.fq -I sample.R2.fq -o sample.fp.R1.fq.gz -O sample.fp.R2.fq.gz --thread=5 --html=sample.html --json=sample.json --detect_adapter_for_pe --qualified_quality_phred=10 --length_required=150
 ```
 
 The adapter trimmed reads from the doubled haploid lines were aligned to the reference genome using Hisat2 and filtered to recover unique concordant reads as parent. The 48 sorted bam file names are listed in `bamFile_list.txt` per line and used for genotyping using BCFtools:
