@@ -56,10 +56,8 @@ The adapter trimmed reads from the doubled haploid lines were aligned to the ref
 ```
 bcftools1.10.2/bin/bcftools mpileup -T parentSNP_positions.tsv.gz --annotate AD,DP,INFO/AD --skip-indels -f 170831_Landmark_pseudomolecules_v1.fasta -b bamFile_list.txt -B | bcftools1.10.2/bin/bcftools call -m --constrain alleles -T parentSNP_positions.tsv.gz --variants-only --skip-variants indels --output-type v -o StanMarkDH.vcf --group-samples -
 ```
-
-
-
-
+####3. Introgression Mapping.
+hisat2-2.1.0/hisat2 -p 12 -x /hisat-index/wheat-barley-combined-ref -1 sample1_R1.fq -2 sample1_R2.fq -S sample1.sam --no-spliced-alignment --no-unal &> sample1.log
 
 
 
