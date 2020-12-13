@@ -1,6 +1,6 @@
+#!/bin/bash -l
 #########################################################################################################################
 ########## SkimSeq_Method, average read count per chromosome arm based on provided centromeric position ################# 
-#!/bin/bash -l
 #SBATCH --job-name=Skim-Seq-Manuscript
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=4
