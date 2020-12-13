@@ -9,7 +9,7 @@
 #SBATCH --output="%x_%j.o"
 #SBATCH --error="%x_%j.e"
 
-for filename in *.txt;
+for filename in *.txt; ## the input text files should have at least three columns: read count, chromosome, and Position information
 do
 
 echo "Output of file $filename ">>Ratio-Output
