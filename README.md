@@ -68,9 +68,9 @@ hisat2-2.1.0/hisat2 -p 12 -x /hisat-index/wheat-barley-combined-ref -1 sample1_R
 we retrived concordant unique reads and computed total reads per Mb bin for all chromosomes: 
 
 ```
-grep -v "^@" sample1.sam	| grep YT:Z:CP | grep NH:i:1 | cut -f 3,4 | sort -k1,1 -k2,2n | awk '{print $1 "\t" int($2 / 1000000) * 1000000}' | uniq -c >	sample1.txt
-
+grep -v "^@" sample1.sam | grep YT:Z:CP | grep NH:i:1 | cut -f 3,4 | sort -k1,1 -k2,2n | awk '{print $1 "\t" int($2 / 1000000) * 1000000}' | uniq -c >	sample1.txt
 ```
+
 #### 3. Read count normalization:
 
 ```
@@ -78,25 +78,24 @@ readarray array < all.sample.txt # list of all text files
 name=$(echo ${array[$SLURM_ARRAY_TASK_ID]} | sed s'/.txt/_coverage.txt/')
 sum=$(awk '{s+=$1; n++} END { if (n > 0) print s/NR; }' ${array[$SLURM_ARRAY_TASK_ID]})
 awk -v SUM="$sum" 'BEGIN{OFS="\t"} {$4=$1*(100/SUM)}{print}' ${array[$SLURM_ARRAY_TASK_ID]} > $name # read normalization
-
 ```
+
 #### 4. Add sample name into output file:
 
 ```
 awk -v NAME="$name" 'BEGIN{OFS="\t"}{$5=NAME} {print}' sample1_coverage.txt > sample1.added.name.newcol.txt
-
 ```
+
 #### 5. Remove reads mapped in unknown chromosomes:
 
 ```
 sed '/chrUn/d'  sample1.added.name.newcol.txt > sample1.added.name.newcol.noUn.txt #chrUn indicates unknown chromosomes
-
 ```
-#### 6. Select chromosomes for plotting and data visualization:
+
+#### 6. Select chromosomes for plotting and visualization:
 
 ```
 grep chr(#to be plotted) sample1.added.name.newcol.noUn.txt  > sample1.added.name.newcol.noUn.with.required.chromosomes.txt
-
 ```
 
 ### D. Aneuploidy mapping 
@@ -106,12 +105,15 @@ Mapping aneuploids in breeding lines using read depth information require refere
 
 ```
 /hisat2-2.1.0/hisat2 -p 12 -x CS_refseqv1 -1 sample5Dmono_R1.fq.gz -2 sample5Dmono_R2.fq.gz -S sample5Dmono.sam --no-spliced-alignment --no-unal &> sample5Dmono.log
-
 ```
+
 In further steps -
   to confirm the aneuploidy using skim-seq approach via read depth mapping, we followed steps 2-6 of section C (Introgression     mapping) that led us to obtain read count graphs.  
 
+#### 1. Read count table:
+mean read count per chromosome arm (wheat as an example) from the text file obtained after step 6 can be computed as
 
-
-
+```
+Read_Count_Per_Chromosome_Arm.sh 
+```
 
