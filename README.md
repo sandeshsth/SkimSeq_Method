@@ -110,7 +110,7 @@ Mapping aneuploids in breeding lines using read depth information require refere
 In further steps -
   to confirm the aneuploidy using skim-seq approach via read depth mapping, we followed steps 2-6 of section C (Introgression     mapping) that led us to obtain read count graphs.  
 
-#### 1. Read count table:
+#### 2. Read count table:
 mean read count per chromosome arm (wheat as an example) from the text file obtained after step 6 can be computed as
 
 ```
