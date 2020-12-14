@@ -57,14 +57,14 @@ The adapter trimmed reads from the doubled haploid lines were aligned to the ref
 bcftools1.10.2/bin/bcftools mpileup -T parentSNP_positions.tsv.gz --annotate AD,DP,INFO/AD --skip-indels -f 170831_Landmark_pseudomolecules_v1.fasta -b bamFile_list.txt -B | bcftools1.10.2/bin/bcftools call -m --constrain alleles -T parentSNP_positions.tsv.gz --variants-only --skip-variants indels --output-type v -o StanMarkDH.vcf --group-samples -
 ```
 ### C. Introgression mapping
-#### 1. Hisat2 alignment
+#### 1. Hisat2 alignment:
 We used a combined reference genome of recipient (wheat) and donor (barley) species to map introgression lines. Two genomes were concatenated and all chromosomes names in the combined reference were maintained unique. The demultiplexed and fastp trimmed pair-end reads were mapped using Hisat2 to obtain sam file and log file.
 
 ```
 hisat2-2.1.0/hisat2 -p 12 -x /hisat-index/wheat-barley-combined-ref -1 sample1_R1.fq -2 sample1_R2.fq -S sample1.sam --no-spliced-alignment --no-unal &> sample1.log
 ```
 
-#### 2. Retriving concordant unique reads & read count per Mb: 
+#### 2. Retriving concordant unique reads & read count: 
 we retrived concordant unique reads and computed total reads per Mb bin for all chromosomes: 
 
 ```
@@ -89,7 +89,7 @@ awk -v NAME="$name" 'BEGIN{OFS="\t"}{$5=NAME} {print}' sample1_coverage.txt > sa
 #### 5. Remove reads mapped in unknown chromosomes:
 
 ```
-sed '/chrUn/d'  sample1.added.name.newcol.txt > sample1.added.name.newcol.noUn.txt
+sed '/chrUn/d'  sample1.added.name.newcol.txt > sample1.added.name.newcol.noUn.txt #chrUn indicates unknown chromosomes
 
 ```
 #### 6. Select chromosomes for plotting and data visualization:
@@ -97,4 +97,21 @@ sed '/chrUn/d'  sample1.added.name.newcol.txt > sample1.added.name.newcol.noUn.t
 ```
 grep chr(#to be plotted) sample1.added.name.newcol.noUn.txt  > sample1.added.name.newcol.noUn.with.required.chromosomes.txt
 
-### D. Aneuploidy mapping
+```
+
+### D. Aneuploidy mapping 
+
+#### 1. Hisat2 alignment:
+Mapping aneuploids in breeding lines using read depth information require reference genome of mother species. For wheat monosomics group 5D, the demultiplexed and adapter trimmed sequences were aligned to the Chines Spring reference genome (v1)   
+
+```
+/hisat2-2.1.0/hisat2 -p 12 -x CS_refseqv1 -1 sample5Dmono_R1.fq.gz -2 sample5Dmono_R2.fq.gz -S sample5Dmono.sam --no-spliced-alignment --no-unal &> sample5Dmono.log
+
+```
+In further steps -
+  to confirm the aneuploidy using skim-seq approach via read depth mapping, we followed steps 2-6 of section C (Introgression     mapping) that led us to obtain read count graphs.  
+
+
+
+
+
