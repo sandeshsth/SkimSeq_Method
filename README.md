@@ -101,18 +101,16 @@ grep chr(#to be plotted) sample1.added.name.newcol.noUn.txt  > sample1.added.nam
 ### D. Aneuploidy mapping 
 
 #### 1. Hisat2 alignment:
-Mapping aneuploids in breeding lines using read depth information require reference genome of mother species. For wheat monosomics group 5D, the demultiplexed and adapter trimmed sequences were aligned to the Chines Spring reference genome (v1)   
+Mapping aneuploidy in breeding lines using read depth information require reference genome of the mother species. For wheat monosomics group 5D, the demultiplexed and adapter trimmed sequences were aligned to the Chines Spring reference genome (v1)   
 
 ```
 /hisat2-2.1.0/hisat2 -p 12 -x CS_refseqv1 -1 sample5Dmono_R1.fq.gz -2 sample5Dmono_R2.fq.gz -S sample5Dmono.sam --no-spliced-alignment --no-unal &> sample5Dmono.log
 ```
 
-In further steps -
-  to confirm the aneuploidy using skim-seq approach via read depth mapping, we followed steps 2-6 of section C (Introgression     mapping) that led us to obtain read count graphs.  
+We followed steps 2-6 of section C (Introgression mapping) in further steps to obtain read count graphs if aneuploid stocks  
 
 #### 2. Read count table:
-mean read count per chromosome arm (wheat as an example) from the text file obtained after step 6 can be computed as
-
+Mean read count per chromosome arm in wheat monosomics group 5D was computed using the script;
 ```
 sbatch Read_Count_Per_Chromosome_Arm.sh 
 ```
