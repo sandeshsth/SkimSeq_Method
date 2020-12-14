@@ -92,7 +92,9 @@ awk -v NAME="$name" 'BEGIN{OFS="\t"}{$5=NAME} {print}' sample1_coverage.txt > sa
 sed '/chrUn/d'  sample1.added.name.newcol.txt > sample1.added.name.newcol.noUn.txt
 
 ```
-#### 5. Select chromosomes for plotting and data visualization:
+#### 6. Select chromosomes for plotting and data visualization:
 
 ```
 grep chr(#to be plotted) sample1.added.name.newcol.noUn.txt  > sample1.added.name.newcol.noUn.with.required.chromosomes.txt
+
+### D. Aneuploidy mapping
