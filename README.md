@@ -81,13 +81,18 @@ awk -v SUM="$sum" 'BEGIN{OFS="\t"} {$4=$1*(100/SUM)}{print}' ${array[$SLURM_ARRA
 
 ```
 #### 4. Add sample name into output file:
+
 ```
 awk -v NAME="$name" 'BEGIN{OFS="\t"}{$5=NAME} {print}' sample1_coverage.txt > sample1.added.name.newcol.txt
 
 ```
+#### 5. Remove reads mapped in unknown chromosomes:
 
+```
+sed '/chrUn/d'  sample1.added.name.newcol.txt > sample1.added.name.newcol.noUn.txt
 
+```
+#### 5. Select chromosomes for plotting and data visualization:
 
-
-
-
+```
+grep chr(#to be plotted) sample1.added.name.newcol.noUn.txt  > sample1.added.name.newcol.noUn.with.required.chromosomes.txt
