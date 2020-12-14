@@ -114,6 +114,6 @@ In further steps -
 mean read count per chromosome arm (wheat as an example) from the text file obtained after step 6 can be computed as
 
 ```
-Read_Count_Per_Chromosome_Arm.sh 
+sbatch Read_Count_Per_Chromosome_Arm.sh 
 ```
 
