@@ -56,12 +56,34 @@ The adapter trimmed reads from the doubled haploid lines were aligned to the ref
 ```
 bcftools1.10.2/bin/bcftools mpileup -T parentSNP_positions.tsv.gz --annotate AD,DP,INFO/AD --skip-indels -f 170831_Landmark_pseudomolecules_v1.fasta -b bamFile_list.txt -B | bcftools1.10.2/bin/bcftools call -m --constrain alleles -T parentSNP_positions.tsv.gz --variants-only --skip-variants indels --output-type v -o StanMarkDH.vcf --group-samples -
 ```
-## C. Introgression Mapping
+### C. Introgression mapping
 #### 1. Hisat2 alignment
 We used a combined reference genome of recipient (wheat) and donor (barley) species to map introgression lines. Two genomes were concatenated and all chromosomes names in the combined reference were maintained unique. The demultiplexed and fastp trimmed pair-end reads were mapped using Hisat2 to obtain sam file and log file.
 
 ```
 hisat2-2.1.0/hisat2 -p 12 -x /hisat-index/wheat-barley-combined-ref -1 sample1_R1.fq -2 sample1_R2.fq -S sample1.sam --no-spliced-alignment --no-unal &> sample1.log
+```
+
+#### 2. Retriving concordant unique reads & read count per Mb: 
+we retrived concordant unique reads and computed total reads per Mb bin for all chromosomes: 
+
+```
+grep -v "^@" sample1.sam	| grep YT:Z:CP | grep NH:i:1 | cut -f 3,4 | sort -k1,1 -k2,2n | awk '{print $1 "\t" int($2 / 1000000) * 1000000}' | uniq -c >	sample1.txt
+
+```
+#### 3. Read count normalization:
+
+```
+readarray array < all.sample.txt # list of all text files 
+name=$(echo ${array[$SLURM_ARRAY_TASK_ID]} | sed s'/.txt/_coverage.txt/')
+sum=$(awk '{s+=$1; n++} END { if (n > 0) print s/NR; }' ${array[$SLURM_ARRAY_TASK_ID]})
+awk -v SUM="$sum" 'BEGIN{OFS="\t"} {$4=$1*(100/SUM)}{print}' ${array[$SLURM_ARRAY_TASK_ID]} > $name # read normalization
+
+```
+#### 4. Add sample name into output file:
+```
+awk -v NAME="$name" 'BEGIN{OFS="\t"}{$5=NAME} {print}' sample1_coverage.txt > sample1.added.name.newcol.txt
+
 ```
 
 
