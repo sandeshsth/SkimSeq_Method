@@ -1,3 +1,5 @@
+######### R script to generate read count vs. position graph for skim-seq population ######
+
 f4 <- fread("DNA191014P04_B11.txt", header = T, check.names = T, data.table = F)
 colnames(df4)[1:5] = c('rawread', 'chr', 'pos', 'nread', 'sample' ) ## rawread = read count; chr = chromosome; pos = position; nread = normalized read
 head(df4)
