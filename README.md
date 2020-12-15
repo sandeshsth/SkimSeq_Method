@@ -104,7 +104,7 @@ grep chr(#to be plotted) sample1.added.name.newcol.noUn.txt  > sample1.added.nam
 Mapping aneuploidy in breeding lines using read depth information require reference genome of the mother species. For wheat monosomics group 5D, the demultiplexed and adapter trimmed sequences were aligned to the Chines Spring reference genome (v1)   
 
 ```
-/hisat2-2.1.0/hisat2 -p 12 -x CS_refseqv1 -1 sample5Dmono_R1.fq.gz -2 sample5Dmono_R2.fq.gz -S sample5Dmono.sam --no-spliced-alignment --no-unal &> sample5Dmono.log
+hisat2-2.1.0/hisat2 -p 12 -x CS_refseqv1 -1 sample5Dmono_R1.fq.gz -2 sample5Dmono_R2.fq.gz -S sample5Dmono.sam --no-spliced-alignment --no-unal &> sample5Dmono.log
 ```
 
 We followed steps 2-6 of section C (Introgression mapping) in further steps to obtain read count graphs of aneuploid stocks  
