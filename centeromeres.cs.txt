@@ -1,0 +1,29 @@
+
+
+## Source: https://science.sciencemag.org/content/sci/suppl/2018/08/15/361.6403.eaar7191.DC1/aar7191_IWGSC_SM.pdf (Table S11.)
+
+short arm length: <= of the centreomeric position 
+long arm length: > of the centromeric position 
+
+Chromosomes	Centromeres(bp)
+1A	213000000
+1B	240000000
+1D	170000000
+2A 	340000000
+2B	348000000
+2D	268000000
+3A	317000000
+3B	348000000
+3D	240000000
+4A	315000000
+4B	318000000
+4D	185000000
+5A	250000000
+5B	200000000
+5D	186000000
+6A	291000000
+6B	325000000
+6D	214000000
+7A	362000000
+7B	294000000
+7D	338000000
