@@ -58,7 +58,7 @@ bcftools1.10.2/bin/bcftools mpileup -T parentSNP_positions.tsv.gz --annotate AD,
 ```
 ### C. Introgression mapping
 #### 1. Hisat2 alignment:
-We used a combined reference genome of recipient (wheat) and donor (barley) species to map introgression lines. Two genomes were concatenated and all chromosomes names in the combined reference were maintained unique. The demultiplexed and fastp trimmed pair-end reads were mapped using Hisat2 to obtain sam file and log file.
+We used a combined reference genome of recipient (wheat) and donor (barley) species to map introgression lines. Two genomes were concatenated and all chromosomes names in the combined reference were maintained unique. The demultiplexed and fastp trimmed pair-end reads were mapped using Hisat2 to obtain sequence alignment map (sam) file and log file.
 
 ```
 hisat2-2.1.0/hisat2 -p 12 -x /hisat-index/wheat-barley-combined-ref -1 sample1_R1.fq -2 sample1_R2.fq -S sample1.sam --no-spliced-alignment --no-unal &> sample1.log
@@ -107,7 +107,7 @@ Mapping aneuploidy in breeding lines using read depth information require refere
 /hisat2-2.1.0/hisat2 -p 12 -x CS_refseqv1 -1 sample5Dmono_R1.fq.gz -2 sample5Dmono_R2.fq.gz -S sample5Dmono.sam --no-spliced-alignment --no-unal &> sample5Dmono.log
 ```
 
-We followed steps 2-6 of section C (Introgression mapping) in further steps to obtain read count graphs if aneuploid stocks  
+We followed steps 2-6 of section C (Introgression mapping) in further steps to obtain read count graphs of aneuploid stocks  
 
 #### 2. Read count table:
 Mean read count per chromosome arm in wheat monosomics group 5D was computed using the script;
