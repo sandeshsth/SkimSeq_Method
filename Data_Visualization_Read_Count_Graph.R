@@ -1,6 +1,6 @@
 ######### R script to generate read count vs. position graph for skim-seq population ######
 
-df4 <- fread("DNA191014P04_B11.TA5798.txt", header = T, check.names = T, data.table = F)
+df4 <- fread("DNA191014P04_B11.TA5798.txt", header = T, check.names = T, data.table = F) ## wheat-barley recombinant- homozygous translocation
 colnames(df4)[1:5] = c('rawread', 'chr', 'pos', 'nread', 'sample' )
 #head(df4)
 p <- ggplot(data = subset(df4, df4$nread<200), aes(pos,nread)) + geom_point(size = 0.8, colour="blue") + facet_wrap( ~ chr, ncol=1, strip.position = "right" ) +   ## ,scales = "free_x"
