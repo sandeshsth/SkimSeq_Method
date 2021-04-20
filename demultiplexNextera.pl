@@ -7,8 +7,6 @@ use v5.14;
 ## sshrest1@ksu.edu ##
 ## Oct 2019 ##
 
-$| = 1;
-
 my $fq1 = $ARGV[0];
 my $fq2 = $ARGV[1];
 my $i1 = $ARGV[2];
