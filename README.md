@@ -77,7 +77,7 @@ grep -v "^@" sample1.sam | grep YT:Z:CP | grep NH:i:1 | cut -f 3,4 | sort -k1,1 
 readarray array < all.sample.txt # list of all text files 
 name=$(echo ${array[$SLURM_ARRAY_TASK_ID]} | sed s'/.txt/_coverage.txt/')
 sum=$(awk '{s+=$1; n++} END { if (n > 0) print s/NR; }' ${array[$SLURM_ARRAY_TASK_ID]})
-awk -v SUM="$sum" 'BEGIN{OFS="\t"} {$4=$1*(1/SUM)}{print}' ${array[$SLURM_ARRAY_TASK_ID]} > $name # read normalization
+awk -v SUM="$sum" 'BEGIN{OFS="\t"} {$4=$1/SUM}{print}' ${array[$SLURM_ARRAY_TASK_ID]} > $name # read normalization
 ```
 
 #### 4. Add sample name into output file:
