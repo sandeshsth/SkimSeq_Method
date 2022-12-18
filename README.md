@@ -70,6 +70,22 @@ we retrived concordant unique reads and computed total reads per Mb bin for all 
 ```
 grep -v "^@" sample1.sam | grep YT:Z:CP | grep NH:i:1 | cut -f 3,4 | sort -k1,1 -k2,2n | awk '{print $1 "\t" int($2 / 1000000) * 1000000}' | uniq -c >	sample1.txt
 ```
+For multiple samples we can run a batch script 
+```
+#!/bin/bash -l
+#SBATCH --job-name=samstotxt
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=9
+#SBATCH --time=04-00:00:00   # Use the form DD-HH:MM:SS
+#SBATCH --mem-per-cpu=10G   # Memory per core, use --mem= for memory per node
+#SBATCH --output="%x_%j.out"
+#SBATCH --error="%x_%j.err"
+
+for sample in *.sam;
+do
+grep -v "^@" $sample | grep YT:Z:CP | grep NH:i:1 | cut -f 3,4 | sort -k1,1 -k2,2n | awk '{print $1"\t" int($2 / 1000000) * 1000000}' | uniq -c > $sample.txt
+done
+```
 
 #### 3. Read count normalization:
 
@@ -79,6 +95,8 @@ name=$(echo ${array[$SLURM_ARRAY_TASK_ID]} | sed s'/.txt/_coverage.txt/')
 sum=$(awk '{s+=$1; n++} END { if (n > 0) print s/NR; }' ${array[$SLURM_ARRAY_TASK_ID]})
 awk -v SUM="$sum" 'BEGIN{OFS="\t"} {$4=$1/SUM}{print}' ${array[$SLURM_ARRAY_TASK_ID]} > $name # read normalization
 ```
+
+
 
 #### 4. Add sample name into output file:
 
